@@ -1,0 +1,224 @@
+﻿Servlet生命周期
+      1.创建Servlet实例
+	由服务器创建
+	默认第一次请求到达时创建对象
+	配置了<load-on-startup>参数大于等于0，服务器启动时创建对象
+	实例化的对象是单例的
+      
+      2.初始化
+	调用Servlet中init(ServletConfig config)
+	服务器自动调用
+
+      3.当请求到达时调用service(ServletRequest，ServletResponse)方法
+	对于HttpServlet提供了service(HttpServletRequest，HttpServletResponse)方法
+	Servlet中的service方法会调用HttpServlet中的service方法
+	HttpServlet又提供了doGet和doPost方法
+
+      4.当服务器销毁Servlet实例时
+	调用destroy()方法
+	服务器自动调用
+
+
+
+ServletConfig表示Servlet的配置
+可以读取配置文件中配置的参数
+
+
+JSP就是Servlet
+
+JSP组成
+	html，css，js代码
+	jsp指令<%@xxx %>
+	jsp动作<jsp:xxx ></jsp:xxx>
+	java代码<% %>
+	方法和属性的定义<%! %>
+	显示代码<%= %>
+
+
+JSP内置对象 9个
+	out
+		响应的输出流
+
+	response
+		响应对象
+	
+	pageContext
+		当前页面上下文
+		jsp引擎会为每一个jsp实例创建一个PageContext实例
+		作用 
+			绑定数据
+			获得其他内置对象
+	request
+		请求对象
+	session
+	application
+
+	exception
+		必须出现在有isErrorPage=true指令的页面中
+
+	config
+		ServletConfig对象
+
+	page
+		当做this，相当于当前jsp实例
+
+	
+
+Http状态管理
+	http协议是一个无状态协议
+	每发送一次请求
+	需要建立一个新的连接
+	用完以后会释放连接
+	服务器不会记录谁曾经方法过他
+	为了提高服务器的工作效率
+	连接会及时释放，可以为更多客户端服务
+
+	但是某些特定场合需要记录谁曾经访问过
+
+
+
+cookie技术
+	将信息记录在客户端
+
+session技术
+	将信息记录在服务器端
+
+
+
+
+cookie
+	在客户端（浏览器）保存用户状态的一种状态管理技术
+	当客户端访问服务器时，服务器可以将少量的数据发送到客户端
+	客户端会将该数据保存到客户端机器硬盘上
+	当浏览器下次再次访问服务器时
+	会将就该数据发送给服务器
+	这样浏览器和服务器多次交互
+	该数据会一直来回传递
+	通过这种方式，来维护用户的状态
+
+	cookie使用
+		创建cookie
+			Cookie cookie=new Cookie(String name,String value);
+			response.addCookie(cookie);
+			cookie只支持ISO8859-1的编码，如果存在中文，需要转码
+
+		查询cookie
+			Cookie[] cookies=request.getCookies();
+			如果没用返回null
+			String getName()
+			String getValue()
+
+	cookie生存时间
+		默认情况下
+			如果浏览器关闭，删除当前保存的cookie
+		
+		可以使用setMaxAge(int seconds)
+	
+	cookie路径
+		默认
+			工程路径
+		可以使用setPath(String path)
+
+	cookie限制
+		只能保存字符串
+		字符编码只能是ISO8859-1
+		数据量大小（跟浏览器有关，大约4k）
+		cookie保存在客户端，不安全
+		浏览器可以禁用cookie
+		浏览器能够保存的cookie数量有限制
+
+
+session技术
+	会话
+	在服务器端维护用户状态的一种状态管理技术
+	当浏览器访问服务器时，服务器会创建一个session对象
+	该对象有一个唯一标识号，sessionId
+	并且服务器在默认情况下，会使用cookie技术
+	将sessionId发送到浏览器来保存
+	当浏览器下次访问时，会将sessionId发送给服务器
+	服务器通过sessionId查找对应session对象
+	通过这种方式
+	就可以保存用户多次操作的中间结果
+	也就是状态
+
+	session使用
+		创建session
+			HttpSession
+			request.getSession();
+			request.getSession(boolean flag)
+			
+			request.getSession();相当于request.getSession(true);
+
+			true
+				浏览器发送请求
+				服务器会检查请求中是否存在sessionId
+				如果没有
+				服务器会创建一个session对象
+				如果有
+				服务器检查该sessionId对应的session对象是否存在
+				如果存在返回该session对象
+				如果不存在
+				就创建新的session对象
+
+				无 新建
+				有 使用原来的
+
+			false
+				浏览器发送请求
+				服务器会检查请求中是否存在sessionId
+				如果没有
+				返回null
+				如果有
+				服务器检查该sessionId对应的session对象是否存在
+				如果存在返回该session对象
+				如果不存在
+				就返回null
+
+				无 返回null
+				有 使用原来的
+
+		session目的
+			存放数据
+			session.setAttribute(String key,Object value);
+			Object session.getAttribute(String key);
+
+		常用方法
+			session.setAttribute(String key,Object value);
+			Object session.getAttribute(String key);
+			session.removeAttribute(String key);
+			session.setMaxInactiveInterval(int seconds);
+			session.invalidate(); 立即失效
+
+
+		常用于
+			登陆检查
+			保存登陆用户的信息
+			跨请求传递数据
+			验证码
+
+	统计当前用户是第几次访问系统
+
+HTTP/1.1 302 Moved Temporarily
+Server: Apache-Coyote/1.1
+Set-Cookie: username=%E5%95%8A%E5%95%8A%E5%95%8A
+Set-Cookie: password=abc
+Location: http://127.0.0.1:8080/web/index.jsp
+Content-Length: 0
+Date: Thu, 11 Sep 2014 03:20:41 GMT
+
+
+
+
+GET /web/getCookie HTTP/1.1
+Host: 127.0.0.1:8080
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.103 Safari/537.36
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: username=%E5%95%8A%E5%95%8A%E5%95%8A; password=abc; JSESSIONID=40BDE72ABD0DDBF93222DFE4F76A25F8
+
+
+5861FC690D767F14D81B4E2F2533D6EC
+
+5861FC690D767F14D81B4E2F2533D6EC

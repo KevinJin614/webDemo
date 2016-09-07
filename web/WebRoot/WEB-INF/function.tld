@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<tlib-version>1.0</tlib-version>
+	<short-name>fun</short-name>
+	<uri>http://itany.com/functions</uri>
+
+	<function>
+		<!--  EL表达式中调用方法的名字，不一定要跟具体的方法名一致	-->
+		<name>getChecked</name>
+		<!--  具体方法所在的类	-->
+		<function-class>
+			day10.FormUtil
+		</function-class>
+		<!--  具体方法的描述	-->
+		<function-signature>
+			java.lang.String getChecked(java.lang.String, java.lang.String[])
+		</function-signature>
+	</function>
+
+	
+</taglib>

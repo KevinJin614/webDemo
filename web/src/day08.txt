@@ -1,0 +1,31 @@
+﻿webroot
+
+	a.jsp
+	b/b.jsp
+
+
+	/servlet/S
+
+
+http://127.0.0.1:8080/test/a.jsp
+
+b/b.jsp
+
+http://127.0.0.1:8080/test/b/b.jsp
+
+http://127.0.0.1:8080/test/b/b.jsp
+
+../servlet/S
+
+http://127.0.0.1:8080/test/servlet/S
+
+../a.jsp
+
+http://127.0.0.1:8080/test/a.jsp
+
+
+http://127.0.0.1:8080/test/servlet/S
+
+b/b.jsp
+
+http://127.0.0.1:8080/test/servlet/b/b.jsp

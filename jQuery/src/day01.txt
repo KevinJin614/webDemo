@@ -1,0 +1,67 @@
+﻿js框架
+jQuery
+	核心
+		jquery()
+		缩写成$()
+	
+	jQuery对象：由jQuery方法产生的对象
+	DOM对象：Html中的对象
+
+
+	DOM于jQuery转换
+		DOM->jQuery: $(dom对象)
+		jQuery->DOM: jQuery对象[0] 或者 jQuery对象.get(0)
+
+	选择器
+		id选择器
+			$("#id")
+
+		元素选择器
+			$("元素名")
+		
+		css选择器
+			$(".css名")
+	
+	事件
+
+	css处理
+		css(name) css(name,value)
+		addClass(class) removeClass(class)
+
+	属性 html 文本 值
+		没给参数取值，给参数赋值
+		值 val
+		属性 attr
+		html html
+		文本 text
+
+	文档处理
+
+		内部插入
+			a和b都是jQuery对象
+
+			a.append(b) 把b放到a中的末尾
+			a.appendTo(b) 把a发到b中的末尾
+		
+		外部插入
+			after before
+		
+		删除元素
+			remove empty
+
+		复制元素 clone
+			
+
+	ajax
+		ajax发送请求方法
+			get
+			post
+			getJSON
+			load
+		
+		ajax事件
+			ajaxStart
+			ajaxSuccess
+
+	绑定数据
+

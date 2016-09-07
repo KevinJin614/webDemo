@@ -1,0 +1,106 @@
+﻿t_product 商品		
+	id
+	name
+	price
+
+t_user 用户
+	id			
+	username		
+	password		
+	phone
+	address
+
+t_order 订单
+	id
+	user_id
+	no
+	price
+
+
+t_item 订单明细
+	id
+	product_id
+	num
+	price
+	order_id
+
+
+
+
+
+
+create  table t_product(			Cart购物车                                                         
+	id int primary key auto_increment,		用户登陆，创建一个购物车对象，将购物车放入session          
+	name varchar(20),				用户注销时，释放session                                    
+	price double					                                                           
+)							属性                                                       
+								List<Item> items                                   
+create table t_user(						Double price                                     	
+	id int primary key auto_increment,		方法                                                       
+	username varchar(10),					//往购物车中添加商品，                             
+	password varchar(10),					//如果当前购物车中商品不存在                       
+	phone varchar(20),					//往集合中添加一个对象                             
+	address varchar(50)					//如果当前购物车中已经存在本商品                   
+)								//修改明细的数量                                   
+								//总价钱加当前的商品价格                           
+create table t_order(						add                                                
+	id int primary key auto_increment,			                                                   
+	user_id int references t_user(id),			//根据明细的id，删除购物车中的明细                 
+	no varchar(20),						//总价钱减当前明细的价格                           
+	price double						removeById                                         
+)								                                                   
+								//一次删除多个明细，可以调用removeById             
+create table t_item(						removeByIds                                        
+	id int primary key auto_increment,			                                                   
+	product_id int references t_product(id),		//清空购物车                                       
+	num int,						//重新分配一个新的购物车对象                       
+	price double,						//总价钱置成0                                      
+	order_id int references t_order(id)			clear                                              
+)								                                                   
+								//返回所有明细给页面显示                           
+								findAll                                            
+								                                                   
+								                                                   	
+						                                                                   	
+							
+
+
+                                                      
+
+
+
+
+	                                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 
+                                                                 

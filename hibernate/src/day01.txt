@@ -1,0 +1,70 @@
+﻿Hibernate
+	冬眠
+	持久层框架
+	jdbc是java访问数据库的唯一手段
+	EJB2 Entity Bean 重量级框架
+	Hibernate
+	EJB3	JPA	规范
+
+
+
+hibernate功能
+	封装jdbc代码
+	帮我们写sql语句
+	关系
+	性能优化，缓存，延迟加载等
+
+
+
+
+create table t_person(
+	id int primary key auto_increment,
+	name varchar(10),
+	birthday date,
+	sex boolean
+)
+
+
+
+create table t_person(
+	id number(4) primary key,
+	name varchar2(10),
+	birthday date,
+	sex number(1)
+)
+
+create sequence s_person
+
+
+ORM
+对象关系映射
+类		表
+属性		字段
+关系		关系
+
+
+jar包 1.2章
+hibernate.cfg.xml配置 3.3章
+
+
+Driver
+oracle.jdbc.driver.OracleDriver
+
+url
+jdbc:oracle:thin:@ip:端口号:库名
+		     1521
+
+
+dialect 方言 3.4.1章
+
+hibernate类型	5.2.2章
+
+generator主键生成方式 5.1.4.1章
+
+
+Hibernate API
+Configuration	用于解析hibernate.cfg.xml和Xxx.hbm.xml,并创建SessionFactory对象
+SessionFactory	用于创建Session的工厂，很消耗资源，线程安全 单例
+Session		持久化管理器，程序和数据库之间的会话，线程不安全 1.synchronized 2.每个人分配新的Session对象
+Transaction	事务管理器
+

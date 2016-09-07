@@ -1,0 +1,136 @@
+﻿JDBCTemplate
+	1.对于jdbc代码进行封装，简化开发
+	2.对于异常做了转换，解耦和，调用者跟具体访问数据库的技术解耦和
+
+
+
+单例模式
+	程序在运行期间有且只有一个对象
+
+工厂模式
+	解耦和，分离调用者和实现者
+
+模板模式
+	处理过程顺序固定，其中有可变的代码
+
+代理模式
+	在不改变现有代码基础上，增加新的功能
+
+模板
+
+解析请求
+封装http请求数据->request对象
+创建一个response
+service(HttpServlet request,HttpServletResponse response){
+
+}
+生成响应
+释放资源
+
+
+//模板方法
+query(String sql,C c){
+	xx
+	xxx
+	//会变的字符串
+	sql
+	xx
+	//会变的代码
+	c.f();
+	xxx
+	xxx
+	xxx
+
+}
+//回调接口
+interfact I{
+	//回调方法
+	abstract void f();
+}
+
+
+
+class C implements I{
+//会变的代码
+	void f(){
+		xx
+		xx
+	}
+}
+
+
+
+
+service
+	UserService
+		regist();
+		proxy
+			UserServiceProxy
+				regist(){
+				       开始事务
+				       impl
+						UserServiceImpl
+							regist(){
+								UserDao
+									selectByUsername();
+									insert();
+									UserDaoImpl{
+										selectByUsername()
+										insert()
+									}
+				
+							}
+					结束事务
+				}
+
+
+
+
+开发商
+代理商
+
+
+
+
+
+//业务接口/代理接口
+public interface 炫斗之王 {
+	public void play();
+}
+//目标类
+public class 琳琅天上 implements 炫斗之王 {
+	public void play(){
+		xxx
+		xxx
+	}
+}
+//代理类
+public class 腾讯 implements 炫斗之王 {
+	
+	private 炫斗之王 xd;
+
+	public 腾讯(){
+		xd=new 琳琅天上();
+	}
+	
+	public void play(){
+		//维护，日志，收费
+		xxxx
+		xd.play();
+	}
+
+}
+//调用者
+public class Player{
+	main(){
+		炫斗之王 xd=new 腾讯();
+		xd.play();
+	}
+}
+
+
+
+
+
+
+

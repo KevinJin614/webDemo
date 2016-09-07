@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<pattern value="action-mapping">
+		<pattern value="action">
+			<pattern value="forward">
+				<object-create-rule classname="day01.ForwardConfig"></object-create-rule>
+				<set-next-rule methodname="addForward"></set-next-rule>
+				<set-properties-rule></set-properties-rule>
+			</pattern>
+			<object-create-rule classname="day01.ActionConfig"></object-create-rule>
+			<set-next-rule methodname="addAction"></set-next-rule>
+			<set-properties-rule></set-properties-rule>
+		</pattern>
+	</pattern>
+</digester-rules>

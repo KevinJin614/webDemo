@@ -1,0 +1,119 @@
+﻿框架
+	通用代码
+
+	简化开发
+	使程序结构良好
+
+Struts2
+	是一个MVC框架
+
+	封装WebWork
+
+	优点
+		提高了Action组件的灵活性，摆脱了框架的API，Servlet容器API的依赖性
+		提供了对多种视图技术的整合
+		提供了拦截器和拦截器栈
+
+
+	主要结构
+		核心控制器
+			使用过滤器实现
+			实现组件为
+				org.apache.struts2.dispatcher.FilterDispatcher	2.1.8以前版本，不包括2.1.8
+				org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter 2.1.8版本开始
+
+		Action组件
+			普通的JavaBean，可以选择继承一些框架API
+
+		Result组件
+			用于衔接视图响应技术，如jsp，freemarker，stream，json，plain，excel，pdf，图表等
+
+		Interceptor组件
+			用于封装通用的功能，可以在Action业务方法执行前后做处理
+
+	配置
+		struts-default.xml(内置)
+			作用 预定义一些Result组件，Interceptor组件，拦截器栈组件
+
+			文件结构
+				定义了一系列的<bean>元素，用于框架本身创建对象时需要注入的参数
+
+				<package>元素，用于存放Result，Interceptor，Action组件的定义
+
+				<result-types>元素，用于定义Result组件
+				<interceptors>元素，用于定义Interceptor和InterceptorStack组件
+				<action>元素，用于定义Action组件
+
+		strtus.xml(自定义)
+			定义在类加载路径下
+			配置结构跟struts-default.xml相同
+			作用 自定义一些Result组件，Interceptor组件，Action组件
+
+		default.properties(内置)
+			在org.apache.struts2包下
+			作用 定义与框架相关的系统属性，如字符集，创建对象的工厂，文件上传的解析器等
+
+		struts.properties(自定义)
+			定义在类加载路径下
+			配置key和default.propertieskey相同
+			文件本身是可选的
+
+	获得web组件
+		ActionContext
+		ServletActionContext
+		XxxAware
+
+	struts2中，每次请求创建一个新的Action对象
+
+	struts.xml配置
+		<constant name="" value=""></constant>
+			修改default.properties中的值，相当于在struts.properties中做配置
+		
+		<include file=""></include>
+			让struts2框架找到其他的配置文件，可以有多个配置文件
+			file的路径相对于类加载路径
+
+		<package>
+			namespace
+			Action组件请求路径：
+				协议://ip:port/项目名/namespace名/Action组件名.请求扩展名
+	
+		<param>
+			用于为包含它的对象注入信息
+
+		${属性名}
+			配置文件读取Action中的属性
+
+		通配符*
+			<action>元素的name属性可以使用*，代表任意字符
+			其他的属性可以使用{n}形式引用第n个*代表的信息
+		
+
+
+		动态方法调用
+			请求格式 namespace名/Action名!业务方法名.请求扩展名
+
+
+		/user/login.action
+		/manager/login.action
+		
+		action中class默认值：com.opensymphony.xwork2.ActionSupport
+		action中method默认值：execute
+		result中name默认值：success
+		result中type默认值：dispatcher
+
+适配器模式
+	public class SessionMap extends AbstractMap{
+		
+		private HttpSession session;
+
+		public void put(String key,Object value){
+			session.setAttribute(key,value);
+		}
+
+		public Object get(String key){
+			return session.getAttribute(key);
+		}
+	}
+
+

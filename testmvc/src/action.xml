@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-mapping>
+<!--	商品操作		-->
+	<action path="/findAll" type="action.ProductAction" method="findAll">
+		<forward name="success" path="/show/shop/list"></forward>
+	</action>
+	
+<!--	用户操作		-->
+	<action path="/login" type="action.UserAction" method="login">
+		<forward name="success" path="/findAll.do" redirect="true"></forward>
+		<forward name="fail" path="/show/shop/login"></forward>
+	</action>
+	<action path="/regist" type="action.UserAction" method="regist">
+		<forward name="success" path="/findAll.do" redirect="true"></forward>
+		<forward name="fail" path="/show/shop/regist"></forward>
+	</action>
+	<action path="/logout" type="action.UserAction" method="logout">
+		<forward name="success" path="/findAll.do" redirect="true"></forward>
+	</action>
+	
+<!--	购物车操作	-->
+	<action path="/add" type="action.CartAction" method="add">
+		<forward name="success" path="/findAll.do" redirect="true"></forward>
+	</action>
+	<action path="/clear" type="action.CartAction" method="clear">
+		<forward name="success" path="/show/shop/cart" redirect="true"></forward>
+	</action>
+	<action path="/removeById" type="action.CartAction" method="removeById">
+		<forward name="success" path="/show/shop/cart" redirect="true"></forward>
+	</action>
+	<action path="/removeByIds" type="action.CartAction" method="removeByIds">
+		<forward name="success" path="/show/shop/cart" redirect="true"></forward>
+	</action>
+	
+<!--	订单操作		-->
+	<action path="/create" type="action.OrderAction" method="create">
+		<forward name="success" path="/show/shop/success" redirect="true"></forward>
+	</action>
+	<action path="/findByUserId" type="action.OrderAction" method="findByUserId">
+		<forward name="success" path="/show/shop/orderList" ></forward>
+	</action>
+	<action path="/findByOrderId" type="action.OrderAction" method="findByOrderId">
+		<forward name="success" path="/show/shop/myOrder" ></forward>
+	</action>
+	
+</action-mapping>

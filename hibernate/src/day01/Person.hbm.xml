@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="day01">
+	<class name="Person" table="t_person" dynamic-insert="true" dynamic-update="true">
+		<id name="id">
+<!--			<generator class="identity"></generator>-->
+<!--			<generator class="sequence">-->
+<!--				<param name="sequence">s_person</param>-->
+<!--			</generator>-->
+			<generator class="native">
+<!--				<param name="sequence">s_person</param>-->
+			</generator>
+		</id>
+		<property name="name"></property>
+		<property name="sex"></property>
+		<property name="birthday" update="false" type="date"></property>
+		<property name="hob" column="hobbies"></property>
+	</class>
+</hibernate-mapping>

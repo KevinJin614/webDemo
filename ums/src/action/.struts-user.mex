@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="user" location="50,50" size="170,371">
+    <action name="login" location="10,20" size="150,83">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="modify.jsp" />
+      </result>
+      <result name="fail">
+        <resourceEdge source="fail" routing="0" target="login.jsp" />
+      </result>
+      <result name="busy">
+        <resourceEdge source="busy" routing="0" target="busy.jsp" />
+      </result>
+    </action>
+    <action name="regist" location="10,120" size="150,83">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="login.jsp" />
+      </result>
+      <result name="fail">
+        <resourceEdge source="fail" routing="0" target="regist.jsp" />
+      </result>
+      <result name="busy">
+        <resourceEdge source="busy" routing="0" target="busy.jsp" />
+      </result>
+    </action>
+    <action name="modify" location="10,220" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="modify.jsp" />
+      </result>
+      <result name="busy">
+        <resourceEdge source="busy" routing="0" target="busy.jsp" />
+      </result>
+    </action>
+    <action name="logout" location="10,320" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="login.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="modify.jsp" path="/user/modify.jsp" location="350,50" size="150,55" />
+  <webResource name="login.jsp" path="/user/login.jsp" location="50,200" size="150,55" />
+  <webResource name="busy.jsp" path="/busy.jsp" location="200,200" size="150,55" />
+  <webResource name="regist.jsp" path="/user/regist.jsp" location="350,200" size="150,55" />
+</Struts2Diagram>
+

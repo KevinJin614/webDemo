@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "http://struts.apache.org/dtds/struts-2.1.7.dtd" >
+<struts>
+<!--	<constant name="struts.action.extension" value="do"></constant>-->
+	
+<!--	<include file="xxx/xxx.xml"></include>-->
+
+	<package name="my-struts" extends="struts-default">
+		<action name="login" class="action.LoginAction" method="login">
+			<result name="success" type="redirect">/success.jsp</result>
+			<result name="fail" type="dispatcher">/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="my-package" namespace="/user" extends="struts-default">
+<!--		<action name="opt" class="action.OptAction">-->
+<!--			<param name="name">abc</param>-->
+<!--			<result>/index.jsp</result>-->
+<!--			<result>/${path}.jsp</result>-->
+<!--		</action>-->
+
+
+<!--		<action name="opt_*" class="action.OptAction" method="{1}">-->
+<!--			<result>/index.jsp</result>-->
+<!--		</action>-->
+
+<!--		<action name="opt_*_*_*" class="action.{1}Action" method="{2}">-->
+<!--			<result>/{3}.jsp</result>-->
+<!--		</action>-->
+		
+		<action name="opt" class="action.OptAction">
+<!--			<result>/index.jsp</result>-->
+			<result name="add">/index.jsp</result>
+			<result name="remove">/login.jsp</result>
+			<result name="modify">/success.jsp</result>
+		</action>
+		
+		<action name="show_*">
+			<result>/WEB-INF/{1}.jsp</result>
+		</action>
+
+	</package>
+	
+	
+	
+</struts>

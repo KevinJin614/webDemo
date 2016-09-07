@@ -1,0 +1,137 @@
+﻿Servlet基本api
+	Servlet接口
+		其中有3个主要的方法
+		init destroy service
+
+	GenericServlet抽象类
+		实现Servlet接口中的部分功能
+		init destroy
+		建议以后重写init方法使用无参的init
+
+	HttpServlet抽象类
+		实现了service方法
+
+public abstract class GenericServlet implments Servlet{
+	private ServletConfig config;
+	public void init(ServletConfig config) throws ServletException {
+		this.config=config;
+		init();
+	}
+	public void init() throws ServletException {
+	}
+	public void destroy() {
+	}
+}
+
+public abstract class HttpServlet extends GenericServlet {
+	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+		service((HttpServletRequest)request, (HttpServletResponse)response);
+	}
+
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
+}
+
+<load-on-startup>0</load-on-startup>
+Servlet默认情况下
+第一次发送请求访问Servlet时，创建Servlet对象，并加载到服务器中
+如果配置了<load-on-startup>n</load-on-startup>
+n>=0,这个Servlet会在服务器启动时创建对象，并加载到容器中
+
+
+
+响应状态码
+	405
+		请求类型和Servlet中处理的方法不匹配
+
+
+
+请求格式
+	使用统配符*
+	代表任意字符串
+
+	/xxx/*
+	/xxx/任意字符串
+
+	*.xxx
+	/任意字符串.xxx
+
+
+
+request.getParameter
+	获得某一个参数的值返回一个String类型值
+
+request.getParameterMap
+	获得请求中的所有数据，封装成Map结构的对象
+
+request.getParameterValues
+	获得一组同名参数的值返回一个String[]类型值
+
+
+
+JSP
+	JSP就是Servlet
+	java sever page
+	java服务端页面技术
+	sun公司开发的一种服务器端动态页面生成技术
+
+	作用
+		因为采用Servlet来生成动态的页面国语繁琐
+		JSP技术是简化动态页面开发
+
+	Servlet负责处理业务逻辑
+	JSP负责处理显示逻辑
+
+	jsp组成
+		html+少量的java代码
+
+	jsp运行过程
+		当请求到达服务器，要访问一个jsp
+		服务器会将.jsp文件自动转换成一个.java
+		这个文件就是Servlet
+		转换是由服务器中一个jsp引擎模块完成的
+		然后自动编译，最后调用其中的service方法
+	
+
+	JSP指令
+		<%@指令名 属性=值 %>
+		在.jsp转换成.java时，要求jsp引擎做的一些额外处理
+
+	转换规则
+		html代码------>out.write(html代码);
+		<%java代码%>------>直接将中间代码放到service方法对应的位置
+		<%@ %>------>影响生产Servlet时的源代码
+		<%=java代码%>------>out.writer(java代码);	
+		<%!java代码%>------>直接将中间java代码放到Servlet类体中
+
+	生产的.java文件在
+		tomcat安装目录/work
+
+
+	jsp内置对象
+		request
+		response
+		out
+		等
+
+public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException 
+
+
+
+
+
+
+0111 1111
+1111 1111 1000 0000
+
+
+http://127.0.0.1:8081/web/xxx.testRequest?
+name=asdaasdf
+checkbox=1
+checkbox=3
+
+http://127.0.0.1:8081/web/xxx.testRequest
+?name=
+
+

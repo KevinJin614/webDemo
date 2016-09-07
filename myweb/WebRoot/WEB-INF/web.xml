@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <servlet>
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>day01.HelloServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmpListServlet</servlet-name>
+    <servlet-class>day01.EmpListServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddEmpServlet</servlet-name>
+    <servlet-class>day02.AddEmpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RemoveEmpServlet</servlet-name>
+    <servlet-class>day02.RemoveEmpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RedirectServlet</servlet-name>
+    <servlet-class>day02.RedirectServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowModifyEmpServlet</servlet-name>
+    <servlet-class>day02.ShowModifyEmpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ModifyEmpServlet</servlet-name>
+    <servlet-class>day02.ModifyEmpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestService</servlet-name>
+    <servlet-class>day03.TestService</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>TServlet</servlet-name>
+    <servlet-class>day03.TServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestRequestServlet</servlet-name>
+    <servlet-class>day03.TestRequestServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmpServlet</servlet-name>
+    <servlet-class>day04.EmpServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForwardServlet</servlet-name>
+    <servlet-class>day04.ForwardServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CodeServlet</servlet-name>
+    <servlet-class>day07.CodeServlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/sayHello</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmpListServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddEmpServlet</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RemoveEmpServlet</servlet-name>
+    <url-pattern>/remove</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RedirectServlet</servlet-name>
+    <url-pattern>/redirect</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowModifyEmpServlet</servlet-name>
+    <url-pattern>/load</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ModifyEmpServlet</servlet-name>
+    <url-pattern>/modify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestService</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TServlet</servlet-name>
+    <url-pattern>/t</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TestRequestServlet</servlet-name>
+<!--  	<url-pattern>/testRequest</url-pattern>-->
+<!--  	<url-pattern>/testRequest/a</url-pattern>-->
+<!--	<url-pattern>/testRequest/*</url-pattern>-->
+		<url-pattern>*.testRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmpServlet</servlet-name>
+    <url-pattern>*.emp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForwardServlet</servlet-name>
+    <url-pattern>/forward</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CodeServlet</servlet-name>
+    <url-pattern>*.code</url-pattern>
+  </servlet-mapping>
+
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

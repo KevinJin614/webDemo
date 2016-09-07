@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "http://struts.apache.org/dtds/struts-2.1.7.dtd" >
+<struts>
+	<package name="manager" namespace="/manager" extends="struts-default">
+		<action name="login" class="action.ManagerAction" method="login">
+			<result name="success" type="redirect">/manager/findAll.aciton</result>
+			<result name="fail">/manager/login.jsp</result>
+			<result name="busy">/busy.jsp</result>
+		</action>
+		<action name="findAll" class="action.ManagerAction" method="findAll">
+			<result name="success">/manager/findAll.jsp</result>
+			<result name="busy">/busy.jsp</result>
+		</action>
+		<action name="findById" class="action.ManagerAction" method="findById">
+			<result name="success">/manager/find.jsp</result>
+			<result name="busy">/busy.jsp</result>
+		</action>
+		<action name="removeById" class="action.ManagerAction" method="removeById">
+			<result name="success" type="redirect">/manager/findAll.aciton</result>
+			<result name="busy">/busy.jsp</result>
+		</action>
+		<action name="logout" class="action.ManagerAction" method="logout">
+			<result name="success" type="redirect">/manager/login.jsp</result>
+		</action>
+	</package>
+</struts>

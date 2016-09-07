@@ -1,0 +1,131 @@
+﻿打印订单
+	通过订单id打印
+	通过订单no打印
+
+User Order Item Product
+
+
+abc用户O01订单
+-------------------------------
+序号 商品 数量 价格
+1    aaa  3    99.0
+2    bbb  2    40.0
+-------------------------------
+共2条      总计：139.0元
+
+
+
+订单和用户多对一单向关系
+订单和订单明细一对多双向关系
+订单明细和商品多对一单向关系
+
+
+多对多
+学生			课程
+t_student		t_course
+  id			  id
+  name			  name
+
+	学生选课
+	t_student_course
+		student_id
+		course_id
+
+1 aaa			1 java
+2 bbb			2 oracle
+
+	1 1 98
+	1 2 91
+	2 1 89
+
+
+一对一
+Car		Engine
+  id		  id
+  name		  name
+  engine	  car
+---------------------------------
+t_car1		t_engine1
+  id		  id
+  name		  name
+		  car_id FK UK
+---------------------------------
+t_car2		t_engine2
+  id		  id PK FK
+  name		  name
+
+
+继承
+User
+	id
+	username
+	password
+
+Member		Manager
+  phone		  email
+-------------------------------------------
+t_user1
+	id
+	username
+	password
+	phone
+	email
+	status me/ma
+-------------------------------------------
+t_member1	t_manager1
+  id		  id
+  username	  username
+  password	  password
+  phone		  email
+-------------------------------------------
+t_user2
+	id
+	username
+	password
+
+t_member2	t_manager2
+  phone		  email
+  user_id	  user_id
+
+一表：所有类的属性放到一张表中，增加一个字段区分类型
+	多态查询率效最高，但会浪费数据库空间
+
+一个子类一张表：只为子类建表，父类属性放到子类表中
+	多态查询效率最低，不考虑多态查询效率最高
+
+一个类一张表：一个类建一张表，子类表增加一个关系字段跟父类表做关系
+	节省空间，但效率低，不建议使用
+
+    select
+        user.id as id0_,
+        user.username as username0_,
+        manager.user_id "manager.user_id",
+        member.user_id "member.user_id",
+        case 
+            when manager.user_id is not null then 1 
+            when member.user_id is not null then 2 
+            when user.id is not null then 0 
+        end as clazz_ 
+    from
+        t_user2 user 
+    left outer join
+        t_manager2 manager 
+            on user.id=manager.user_id 
+    left outer join
+        t_member2 member 
+            on user.id=member.user_id
+
+
+组件
+	Person
+		id
+		Name name
+
+	Name
+		firstName
+		lastName
+-----------------------------------------
+	t_person1
+		id
+		first_name
+		last_name

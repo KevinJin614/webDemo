@@ -1,0 +1,186 @@
+﻿CRUD
+
+动态DML
+dynamic-insert="true"
+dynamic-update="true"
+
+
+create table t_person(
+	id int primary key auto_increment,
+	name varchar(10),
+	birthday date,
+	sex boolean,
+	hobbies varchar(20)
+)
+
+
+create table t_person(
+	id number(4) primary key,
+	name varchar2(10),
+	birthday date,
+	sex number(1),
+	hobbies varchar2(20)
+)
+
+create sequence s_person
+
+hibernate对象状态
+临时态	内存里有，而数据库没有一条记录跟他对应，对象没有被Session管理
+游离态	内存里有，而且数据库中有对应的记录，这个对象没有被Session管理
+持久态	内存里有，而且数据库中有对应的记录，这个对象被Session管理，对象状态改变，自动同步到数据库
+（无名态	内存里没有，数据库中有记录）
+
+
+
+
+通过主键查询
+get	没有延迟加载，如果没有找到记录，返回null
+load	有延迟加载，如果没有找到记录，抛出ObjectNotFoundException
+
+延迟加载
+	调用查询方法时，不访问数据库
+	第一次访问数据时，查询数据库
+
+
+
+package day01;
+public class Person$$EnhancerByCGLIB$$bfab1938 extends Person{
+	private boolean wasFirst=true；
+	public String getName(){
+		//判断是否是第一次访问
+		if(true==wasFirst){
+			//查询数据库
+			//为属性赋值
+		}
+
+		return super.getName();
+	}
+}
+
+update=false
+insert=false
+
+Query
+	list
+	setFirstResult
+	setMaxResults
+	uniqueResult
+	setXxx
+	executeUpdate
+
+关系映射
+	多对一
+	一对多
+	多对多
+	一对一
+	继承
+	组件
+
+
+多对一
+t_emp		t_dept
+  id		  id
+  name		  name
+  dept_id
+
+Emp		Dept
+  id		  id
+  name		  name
+  Dept dept
+
+
+
+hbm2ddl.auto
+	none
+	update
+	create
+创建SessionFactory时自动建表
+
+级联操作
+cascade
+	none
+	save-update
+	delete
+	all
+	delete-orphan	删除时，级联删除孤儿
+	all-delete-orphan
+
+
+关系属性默认延迟加载
+
+取消通过主键查询关系属性的延迟加载
+fetch="join"
+
+n+1
+
+join
+left join
+right join
+
+fetch
+
+
+一对多
+Order		Item
+  id		  id
+  owner		  product
+  items		  num
+		  order
+
+t_order		t_item
+  id		  id
+  owner		  product
+		  num
+		  order_id
+
+
+
+一对多默认关系维护权是一方
+o.id=i.order_id true
+一方放弃关系维护权
+inverse="true"
+
+
+1 aaa 3 99.0		1 aaa 2 66.0
+2 bbb 1 10.0		2 ccc 1 50.0
+----------------	-------------------
+	
+
+
+
+[day02.Order@32efa7,
+ day02.Order@32efa7,
+ day02.Order@32efa7,
+ day02.Order@97eded,
+ day02.Order@97eded]
+
+
+
+一对多从一方查询关联多方有bug，会有重复的记录
+
+select *,(select count(1)
+          from t_item i
+          where i.order_id=o.id) count
+from t_order o
+
+
+
+
+
+打印订单
+	通过订单id打印
+	通过订单no打印
+
+User Order Item Product
+
+
+abc用户O01订单
+-------------------------------
+序号 商品 数量 价格
+1    aaa  3    99.0
+2    bbb  2    40.0
+-------------------------------
+共2条      总计：139.0元
+
+
+

@@ -1,0 +1,7 @@
+userDao=dao.impl.UserDaoImpl
+userServiceTarget=service.impl.UserServiceImpl
+userService=service.proxy.UserServiceProxy
+managerDao=dao.impl.ManagerDaoImpl
+managerServiceTarget=service.impl.ManagerServiceImpl
+managerService=service.proxy.ManagerServiceProxy
+transaction=transaction.impl.TransactionManagerImpl

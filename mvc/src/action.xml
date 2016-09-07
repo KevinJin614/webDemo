@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-mapping>
+	<action path="/regist" type="action.UserAction" method="regist">
+		<forward name="success" path="/success.jsp" redirect="true"></forward>
+		<forward name="fail" path="/regist.jsp"></forward>
+	</action>
+	<action path="/findAll" type="action.UserAction" method="findAll">
+		<forward name="success" path="/findAll.jsp"></forward>
+		<forward name="login" path="/login.jsp"></forward>
+	</action>
+</action-mapping>
+

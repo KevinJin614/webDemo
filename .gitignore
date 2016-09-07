@@ -1,0 +1,14 @@
+**/.metadata
+**/.myeclipse/
+**/.settings/
+**/.classpath
+**/.project
+**/.mymetadata
+**/.myhibernatedata
+**/.myumldata
+**/.springBeans
+**/.svn/
+**/target/
+**/classes/
+**/lib/
+**/tools/

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="day02">
+	<class name="Order" table="t_order">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="owner"></property>
+		<set name="items" inverse="true" fetch="join">
+			<key column="order_id"></key>
+			<one-to-many class="Item"/>
+		</set>
+		<property name="count" formula="(select count(1) from t_item i where i.order_id=id)"></property>
+	</class>
+</hibernate-mapping>

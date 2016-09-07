@@ -1,0 +1,116 @@
+﻿类加载
+	将硬盘中的字节码文件读取到jvm内存过程
+
+	在jvm运行期间一个类只加载一次
+	
+	什么情况会导致类加载
+		1.调用java命令时
+		2.创建对象时
+		3.访问静态成员
+		4.Class.forName("包名.类名")
+
+
+路径
+	相对路径
+		浏览器地址栏
+
+	绝对路径
+		/开始相对于http://ip:port
+
+
+
+form表达默认提交方式是get请求
+请求数据在消息头中url后面?拼接参数
+
+<form method="">
+表单提交方式
+	get
+	post
+
+
+
+响应重定向
+	302状态码
+
+HTTP/1.1 302 Moved Temporarily
+Server: Apache-Coyote/1.1
+Location: http://127.0.0.1:8080/web/addEmp.html
+Content-Length: 0
+Date: Thu, 04 Sep 2014 07:44:32 GMT
+
+
+/remove?id=3
+	RemoveEmpServlet
+		service(){
+			xx
+			xx
+
+			302 location: /list
+		}
+
+/list
+
+
+http://127.0.0.1:8080/web/add?name=%B0%A1&salary=123
+
+http://127.0.0.1:8080/web/add?name=a%26b%3D1&salary=123
+
+
+");
+out.println("<table border=\"1\">");
+out.println("	<tr>");
+out.println("		<th>id</th>");
+out.println("		<th>name</th>");
+out.println("		<th>salary</th>");
+out.println("	</tr>");
+out.println("</table>");
+out.println("");
+out.println("
+
+update card
+set status=0
+where no=xxxxx
+
+
+0\n
+
+if("0".equals(s))
+
+登陆
+select *
+from user
+where username=?
+and password=?
+
+username:sdfsadf
+password:1' or '1'='1
+
+select *
+from user
+where username='sdfsadf'
+and password='1' or '1'='1'
+
+
+
+
+
+
+
+
+转账
+	update   2 +1000
+	update   1 -1000
+	
+	
+
+
+http://127.0.0.1:8081/web/add?name=aaaa&salary=1231123
+
+<form action="/web/modify" method="post">
+	<fieldset>
+		<legend>Modify Emp</legend>
+		name:<input type="text" name="name"/><br/>
+		salary:<input type="text" name="salary"/><br/>
+		<input type="submit" value="modify"/>
+	</fieldset>
+</form>

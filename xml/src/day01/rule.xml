@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<digester-rules>
+	<!-- 根标签的标签名 -->
+	<pattern value="class">
+		<!-- 根标签下的子标签名 -->
+		<pattern value="student">
+			<!-- 将xml中配置的student，封装成day01.StudentBean类型的对象 -->
+			<object-create-rule classname="day01.StudentBean"></object-create-rule>
+			<!-- 将xml中配置的name标签的值，设置到StudentBean对象的对应属性上 -->
+			<bean-property-setter-rule pattern="name"></bean-property-setter-rule>
+			<!-- 将当前的StudentBean对象，加入到父节点对象上ClassBean，使用ClassBean中的addStudent方法 -->
+			<set-next-rule methodname="addStudent"></set-next-rule>
+			<!-- 将student标签中的所有属性按名字设置到StudentBean对象的属性中 -->
+			<set-properties-rule></set-properties-rule>
+		</pattern>
+	</pattern>
+</digester-rules>

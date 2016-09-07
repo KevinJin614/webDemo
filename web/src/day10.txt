@@ -1,0 +1,130 @@
+﻿文件上传
+	1.设置表单的提交方式
+		enctype="multipart/form-data"
+		作用
+			浏览器不再对表单中的数据进行编码
+			以二进制流直接发送给服务器
+			这时，文件已经上传到服务器
+			但是使用request.getParameter方法无法获得表单中的数据
+			需要使用InputStream in=request.getInputStream()获取请求中提交的数据
+			然后对这个二进制数据进行解析
+
+	2.因为解析二进制数据比较麻烦
+	  而且需要了解HTTP协议定义的规范
+	  所以一般使用第三方的工具来解析这个二进制数据
+
+
+
+
+EL表达式和JSTL标签库
+	EL表达式
+		EL是官方在jsp中定义的一种语法规范
+
+		类似于<%=java代码%>
+
+		语法
+			${表达式}
+
+			1.能访问作用域
+				pageContext
+				request
+				session
+				application
+
+			  jsp引擎先从执行pageContext.getAttribute(key)中找数据
+			  如果找不到，则依次访问request，session，application区域
+			  如果在其中某一个区域找到数据
+			  则不再向下查找
+			  找到以后作为html输出到浏览器
+			  如果所有区域都没有找到，则什么都不会显示
+
+			  也可以使用
+			  pageScope
+			  requestScope
+			  sessionScope
+			  applicationScope访问指定区域的数据
+
+			 2.能访问对象中的属性
+			   语法
+				${对象.属性名}
+				这里的属性指的是对应的get/set方法
+
+			3.计算
+
+			4.访问自定义方法
+
+			5.获得请求参数
+
+
+自定义方法
+	1.在java代码中定义方法
+		方法是public static 的
+
+	2.配置方法
+		定义一个.tld文件
+		放在WEB-INF下
+
+	3.在jsp中使用
+		使用<%@ taglib uri="" prefix="" %>指令
+			引入自定义方法
+		${prefix的值:tld文件中定义的方法的name(参数)}
+
+
+
+
+JSTL标签库
+	是由官方提供的一套标签
+	<c:if>
+	<c:choose> <c:when> <c:otherwise>
+	<c:forEach>
+
+	<c:catch>
+
+	<c:url>
+
+	<c:import>
+	<c:redirect>
+
+
+自定义标签（了解）
+	简单的自定义标签开发
+	1.写一个java类，继承SimpleTagSupport
+	  重写doTag方法，方法体类写标签处理的操作
+
+	2.配置标签
+		定义一个.tld文件
+		放在WEB-INF下
+
+
+	  <msg info="abc" num="10">
+
+
+
+core核心
+
+POST /web/upload HTTP/1.1
+Host: 127.0.0.1:8080
+Connection: keep-alive
+Content-Length: 49523
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://127.0.0.1:8080
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMue8B4nhr1FJ4DRN
+Referer: http://127.0.0.1:8080/web/upload.jsp
+Accept-Encoding: gzip,deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=DD99D0CE7E1B7038629CE6CA2CB080E7
+
+
+
+
+------WebKitFormBoundaryMue8B4nhr1FJ4DRN
+Content-Disposition: form-data; name="name"
+
+abc
+------WebKitFormBoundaryMue8B4nhr1FJ4DRN
+Content-Disposition: form-data; name="file"; filename="Servlet.JPG"
+Content-Type: image/jpeg
+
+����

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="day03.pm">
+	<class name="User" table="t_user1">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<discriminator column="status"></discriminator>
+		
+		<property name="username"></property>
+		<property name="password"></property>
+		
+		<subclass name="Manager" discriminator-value="ma">
+			<property name="email"></property>
+		</subclass>
+		
+		<subclass name="Member" discriminator-value="me">
+			<property name="phone"></property>
+		</subclass>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class no="java1">
+	<student id="1" sex="男">
+		<name>abc</name>
+	</student>
+	
+	<student id="2" sex="女">
+		<name>aaa</name>
+	</student>
+</class>

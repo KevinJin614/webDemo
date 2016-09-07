@@ -1,0 +1,59 @@
+﻿Ajax
+	Asynchronous javascript and xml
+	异步
+
+	是为了改善传统的web应用中，请求->等待->响应的这种模式的弊端
+	使用javascript,调用浏览器提供的一个对象（XmlHttpRequest js对象，可以称为ajax引擎）
+	向服务器异步的发送请求
+	此时浏览器没有像服务器发送请求 
+	浏览器并没有丢失任何数据，用户任然可以对界面做任意的操作
+	当服务器返回数据（文本或者xml）之后
+	javascript可以操作该数据，更新dom
+	用户的界面可以发送局部的更新，页面无刷新
+
+
+	请求->等待->响应
+		缺点
+			用户体验不友好，服务器返回响应之前，用户不能对页面做其他的任何操作
+
+			因为服务器必须将这个页面数据传递给浏览器
+			所有造成浏览器于服务器之间传输大量的冗余数据，对性能有影响
+
+			用户填写的数据在验证失败以后，会丢失 ，用户需要重新填写
+
+	Ajax编程
+		XmlHttpRequest
+		获得方式，跟浏览器有关
+		new XmlHttpRequest();
+		
+
+		var xmlHttpRequest=null;
+		if((typeof XMLHttpRequest)!='undefined'){
+			xmlHttpRequest=new XMLHttpRequest();
+		}else{
+			xmlHttpRequest=new ActiveXObject('Microsoft.XMLHttp');
+		}
+
+		readyState属性获得状态码
+
+			0(未初始化实例)对象已经建立，但尚未初始化
+			1(初始化)对象已经建立，尚未调用send方法
+			2(发送数据)send方法已经调用，但当前的状态以及http头未知
+			3(数据传送中)已经接收到部分数据，但数据不全
+			4(响应结束)所有处理完成数据已经返回给浏览器js
+
+
+		xmlHttpRequest.open(请求方式，请求地址，是否是异步的)
+
+
+
+json格式的字符串
+	功能
+		跨语言传输数据
+
+
+	create table t_result(
+		id int primary key auto_increment,
+		message varchar(20),
+		spell varchar(10)
+	)

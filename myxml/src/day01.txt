@@ -1,0 +1,95 @@
+﻿XML
+可扩展标记语言
+
+作用
+	传输和保存数据
+
+XML文件
+	文本文件
+	扩展名.xml
+
+
+
+1 s0001 aaa 24 aaa
+
+<class>
+	<student>
+		<id>1</id>
+		<no>s0001</no>
+		<name>aaa</name>
+	</student>
+</class>
+
+
+<function>
+	<name>f</name>
+	<args>
+		<list>
+			< > &
+			<value>abc</value>
+			<value>123</value>
+		</list>
+
+		<xxx:name></xxx:name>
+	</args>
+	<result>aaa</result>
+</function>
+
+规范文件
+	DTD
+	Schema
+
+解析xml
+	jdk提供的解析方式
+	SAX
+		基于事件处理
+
+	DOM
+		基于树形结构
+
+	第三方解析方式
+	dom4j
+
+	jdom
+
+	digester
+
+类加载器加载字节码文件搜索的目录
+1.执行java命令所在的目录
+2.rt.jar
+3.CLASSPATH
+
+
+ctrl+shift+o import包
+ctrl+/ ctrl+shift+c 注释
+ctrl+1 排错
+alt+/ 补全
+shift+回车 换行，光标移动到下一行
+ctrl+shift+回车 光标移动到上一行，换行
+ctrl+d 删除一行或多行
+ctrl+s 保存
+ctrl+t 查看类结构
+ctrl+shift+t 进入类的源代码
+ctrl+h 整个MyEclipse中搜索关键字
+ctrl+m 最大化
+ctrl+l 跳转到n行
+ctrl+z 撤销
+ctrl+y 还原
+alt+shift+s 鼠标右击->source
+ctrl+shift+f 代码格式化
+tab	向右缩进
+shift+tab 向左缩进
+
+
+
+
+
+https://10.0.5.98/svn/tools
+
+
+
+
+
+
+
+	

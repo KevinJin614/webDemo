@@ -1,0 +1,71 @@
+﻿程序结构设计
+
+MVC
+model		数据模型
+view		显示逻辑
+controller	控制器
+
+是一种软件架构的开发模式
+将一个操作分成三种不同的部分
+model：封装业务逻辑，对于业务数据按一定规则进行加工
+view：封装显示逻辑
+controller：协调视图和模型，请求不再直接交给模型，而是统一交给控制器
+	    由控制器来分发给合适模型来处理
+	    模型处理之后的结果，也不再直接返回给视图
+	    而是交给控制器
+	    由控制器选择合适的视图，将结果展示给用户
+
+	    这样做的目的，多个视图可以共享同一个模型
+	    使用者关心只有url（自定义字符串）
+
+
+优点
+	1.多个视图可以共享同一个模型
+	2.不同模块方便测试
+	3.方便工作分配
+	4.方便代码的维护
+
+
+缺点
+	1.mvc只是一个设计思想，对于实际的系统，需要做详细的设计
+	2.增加代码量
+
+	<action path="/regist" type="action.UserAction" method="regist">
+		<forward name="success" path="/success.jsp" redirect="true"></forward>
+		<forward name="fail" path="/regist.jsp"></forward>
+	</action>
+
+	当发送/regist.do请求时
+	调用action.UserAction中的String regist(HttpServletRequest,HttpServletResponse)方法
+	方法有可能返回success,fail字符串
+	当是success时重定向到/success.jsp
+	当fail时转发到/regist.jsp
+
+单例模式
+public class C{
+	private static C c;
+	static{
+		c=new C();
+	}
+	private C(){}
+	public static C getC(){
+		return c;
+	}
+}
+
+
+public class C{
+	private static C c;
+	private C(){}
+	public static C getC(){
+		if(c==null){
+			c=new C();
+		}
+		return c;
+	}
+}
+
+UserAction
+ProductAction
+CartAction
+OrderAction
